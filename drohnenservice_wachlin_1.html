@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Drohnenservice Wachlin – Luftaufnahmen aus Anklam</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --orange: #E8720C;
+  --orange-light: #FF8C2A;
+  --dark: #0D0D0D;
+  --dark2: #161616;
+  --dark3: #1F1F1F;
+  --gray: #2A2A2A;
+  --text: #F0F0F0;
+  --text-muted: #888;
+  --border: rgba(255,255,255,0.08);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
+
+body {
+  background: var(--dark);
+  color: var(--text);
+  font-family: 'Barlow', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 3rem;
+  background: rgba(13,13,13,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-logo {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 1.4rem;
+  letter-spacing: 0.05em;
+  color: var(--text);
+}
+
+.nav-logo span { color: var(--orange); }
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--orange); }
+
+.nav-cta {
+  background: var(--orange);
+  color: #fff !important;
+  padding: 8px 20px;
+  border-radius: 2px;
+  font-weight: 500 !important;
+}
+
+.nav-cta:hover { background: var(--orange-light); color: #fff !important; }
+
+/* HERO */
+.hero-img {
+  position: absolute;
+  inset: 0;
+  background: url('Bilder/bild1.jpg') center center / cover no-repeat; /* Fallback: bild1.jpeg */
+  opacity: 0.25;
+  z-index: 0;
+}
+
+.hero > * { position: relative; z-index: 1; }
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 6rem 2rem 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 40%, rgba(232,114,12,0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 80% 20%, rgba(232,114,12,0.05) 0%, transparent 60%);
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(232,114,12,0.12);
+  border: 1px solid rgba(232,114,12,0.3);
+  color: var(--orange);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  animation: fadeUp 0.8s ease both;
+}
+
+.hero h1 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: clamp(3.5rem, 10vw, 8rem);
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+  margin-bottom: 1.5rem;
+  animation: fadeUp 0.8s ease 0.1s both;
+}
+
+.hero h1 span { color: var(--orange); }
+
+.hero p {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: var(--text-muted);
+  max-width: 560px;
+  line-height: 1.7;
+  margin-bottom: 3rem;
+  animation: fadeUp 0.8s ease 0.2s both;
+}
+
+.hero-btns {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  animation: fadeUp 0.8s ease 0.3s both;
+}
+
+.btn-primary {
+  background: var(--orange);
+  color: #fff;
+  padding: 14px 32px;
+  border-radius: 2px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  transition: all 0.2s;
+}
+
+.btn-primary:hover { background: var(--orange-light); transform: translateY(-2px); }
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text);
+  padding: 14px 32px;
+  border-radius: 2px;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  border: 1px solid var(--border);
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover { border-color: var(--orange); color: var(--orange); }
+
+.hero-stats {
+  display: flex;
+  gap: 3rem;
+  margin-top: 5rem;
+  animation: fadeUp 0.8s ease 0.4s both;
+}
+
+.stat { text-align: center; }
+.stat-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 2.2rem;
+  color: var(--orange);
+  line-height: 1;
+}
+.stat-label { font-size: 0.75rem; color: var(--text-muted); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 4px; }
+
+/* DROHNEN SECTION */
+.section {
+  padding: 6rem 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1;
+  margin-bottom: 1.5rem;
+}
+
+/* AUSRÜSTUNG */
+.equipment-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.equipment-card {
+  background: var(--dark2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+
+.equipment-card:hover { border-color: rgba(232,114,12,0.4); }
+
+.equipment-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--orange);
+}
+
+.eq-tag {
+  display: inline-block;
+  background: rgba(232,114,12,0.12);
+  color: var(--orange);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 2px;
+  margin-bottom: 1rem;
+}
+
+.eq-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.eq-desc {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.eq-specs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.eq-spec {
+  background: var(--dark3);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: 2px;
+}
+
+/* LEISTUNGEN */
+.leistungen-bg {
+  background: var(--dark2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.leistungen-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  margin-top: 3rem;
+  border: 1px solid var(--border);
+}
+
+.leistung-card {
+  background: var(--dark2);
+  padding: 2.5rem 2rem;
+  transition: background 0.3s;
+}
+
+.leistung-card:hover { background: var(--dark3); }
+
+.leistung-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(232,114,12,0.1);
+  border: 1px solid rgba(232,114,12,0.2);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  font-size: 1.4rem;
+}
+
+.leistung-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 1.3rem;
+  margin-bottom: 0.75rem;
+}
+
+.leistung-desc {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+/* VORTEILE */
+.vorteile-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.vorteil {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.vorteil-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--orange);
+  border-radius: 50%;
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+
+.vorteil-text h4 {
+  font-weight: 500;
+  margin-bottom: 4px;
+  font-size: 0.95rem;
+}
+
+.vorteil-text p {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+/* KONTAKT */
+.kontakt-bg {
+  background: var(--dark2);
+  border-top: 1px solid var(--border);
+}
+
+.kontakt-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  margin-top: 3rem;
+}
+
+.kontakt-info h3 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.kontakt-info p {
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.kontakt-detail {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.kontakt-detail-icon {
+  width: 40px;
+  height: 40px;
+  background: rgba(232,114,12,0.1);
+  border: 1px solid rgba(232,114,12,0.2);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.kontakt-detail-text p { font-size: 0.75rem; color: var(--text-muted); }
+.kontakt-detail-text a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.kontakt-detail-text a:hover { color: var(--orange); }
+
+/* FORMULAR */
+.form-group { margin-bottom: 1rem; }
+
+.form-group label {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  background: var(--dark3);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 12px 14px;
+  color: var(--text);
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus { border-color: var(--orange); }
+
+.form-group textarea { resize: vertical; min-height: 120px; }
+.form-group select option { background: var(--dark3); }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+.btn-submit {
+  width: 100%;
+  background: var(--orange);
+  color: #fff;
+  border: none;
+  padding: 14px;
+  border-radius: 2px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 0.5rem;
+}
+
+.btn-submit:hover { background: var(--orange-light); }
+
+.form-success {
+  display: none;
+  background: rgba(39,174,96,0.1);
+  border: 1px solid rgba(39,174,96,0.3);
+  color: #2ecc71;
+  padding: 1rem;
+  border-radius: 2px;
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+/* FOOTER */
+footer {
+  background: var(--dark);
+  border-top: 1px solid var(--border);
+  padding: 2rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-logo {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+}
+
+.footer-logo span { color: var(--orange); }
+footer p { color: var(--text-muted); font-size: 0.8rem; }
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes drift {
+  0%   { transform: translate(0, 0) rotate(0deg); }
+  25%  { transform: translate(30px, -20px) rotate(2deg); }
+  50%  { transform: translate(60px, 10px) rotate(-1deg); }
+  75%  { transform: translate(20px, 30px) rotate(1deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes scan {
+  0%   { transform: translateY(-100%); opacity: 0.6; }
+  100% { transform: translateY(400%); opacity: 0; }
+}
+
+@keyframes pulse-ring {
+  0%   { transform: scale(0.8); opacity: 1; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+
+.hud-drone {
+  position: absolute;
+  top: 20%;
+  right: 8%;
+  width: 180px;
+  height: 180px;
+  animation: drift 8s ease-in-out infinite;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.hud-corner {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-color: var(--orange);
+  border-style: solid;
+  opacity: 0.4;
+}
+
+.hud-corner.tl { top: 15%; left: 5%; border-width: 2px 0 0 2px; }
+.hud-corner.tr { top: 15%; right: 5%; border-width: 2px 2px 0 0; }
+.hud-corner.bl { bottom: 15%; left: 5%; border-width: 0 0 2px 2px; }
+.hud-corner.br { bottom: 15%; right: 5%; border-width: 0 2px 2px 0; }
+
+.hud-coords {
+  position: absolute;
+  bottom: 20%;
+  left: 5%;
+  font-family: monospace;
+  font-size: 0.65rem;
+  color: var(--orange);
+  opacity: 0.4;
+  letter-spacing: 0.1em;
+  pointer-events: none;
+}
+
+.hud-alt {
+  position: absolute;
+  top: 20%;
+  left: 5%;
+  font-family: monospace;
+  font-size: 0.65rem;
+  color: var(--orange);
+  opacity: 0.4;
+  letter-spacing: 0.1em;
+  pointer-events: none;
+}
+
+.hud-scan {
+  position: absolute;
+  left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--orange), transparent);
+  animation: scan 4s linear infinite;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.crosshair {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  pointer-events: none;
+  opacity: 0.08;
+}
+
+.pulse-dot {
+  position: absolute;
+  top: 30%;
+  right: 12%;
+  width: 8px;
+  height: 8px;
+  pointer-events: none;
+}
+
+.pulse-dot::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--orange);
+  border-radius: 50%;
+  animation: blink 1.5s ease-in-out infinite;
+}
+
+.pulse-dot::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border: 1px solid var(--orange);
+  border-radius: 50%;
+  animation: pulse-ring 2s ease-out infinite;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  .section { padding: 4rem 1.5rem; }
+  .equipment-grid { grid-template-columns: 1fr; }
+  .leistungen-grid { grid-template-columns: 1fr; }
+  .vorteile-grid { grid-template-columns: 1fr; }
+  .kontakt-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .hero-stats { gap: 1.5rem; }
+  .form-row { grid-template-columns: 1fr; }
+  footer { flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo" style="display:flex;align-items:center;gap:10px"><img src="Logo/Drohnenservice_Wachlin.png" style="height:36px;width:auto"> DROHNENSERVICE <span>WACHLIN</span></div>
+  <ul class="nav-links">
+    <li><a href="#ausruestung">Ausrüstung</a></li>
+    <li><a href="#leistungen">Leistungen</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+    <li><a href="#kontakt" class="nav-cta">Anfrage stellen</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="background-image:url(Bilder/bild1.jpg);background-size:cover;background-position:center;background-attachment:fixed;">
+  <div class="hero-bg" style="background:rgba(0,0,0,0.65)"></div>
+  <div class="hero-grid"></div>
+  <div class="hud-scan"></div>
+  <div class="hud-corner tl"></div>
+  <div class="hud-corner tr"></div>
+  <div class="hud-corner bl"></div>
+  <div class="hud-corner br"></div>
+  <div class="hud-coords">N 53°51'42" E 13°41'18"<br>ANKLAM · MV · DE</div>
+  <div class="hud-alt">ALT: 120m · SPEED: 0 km/h<br>STATUS: BEREIT</div>
+  <div class="pulse-dot"></div>
+  <svg class="hud-drone" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="100" cy="100" r="12" fill="#E8720C"/>
+    <line x1="100" y1="88" x2="100" y2="40" stroke="#E8720C" stroke-width="3"/>
+    <line x1="100" y1="112" x2="100" y2="160" stroke="#E8720C" stroke-width="3"/>
+    <line x1="88" y1="100" x2="40" y2="100" stroke="#E8720C" stroke-width="3"/>
+    <line x1="112" y1="100" x2="160" y2="100" stroke="#E8720C" stroke-width="3"/>
+    <circle cx="40" cy="40" r="20" stroke="#E8720C" stroke-width="2"/>
+    <circle cx="160" cy="40" r="20" stroke="#E8720C" stroke-width="2"/>
+    <circle cx="40" cy="160" r="20" stroke="#E8720C" stroke-width="2"/>
+    <circle cx="160" cy="160" r="20" stroke="#E8720C" stroke-width="2"/>
+    <circle cx="40" cy="40" r="8" fill="#E8720C" opacity="0.6"/>
+    <circle cx="160" cy="40" r="8" fill="#E8720C" opacity="0.6"/>
+    <circle cx="40" cy="160" r="8" fill="#E8720C" opacity="0.6"/>
+    <circle cx="160" cy="160" r="8" fill="#E8720C" opacity="0.6"/>
+  </svg>
+  <svg class="crosshair" viewBox="0 0 60 60" fill="none">
+    <circle cx="30" cy="30" r="28" stroke="#E8720C" stroke-width="1"/>
+    <line x1="30" y1="0" x2="30" y2="60" stroke="#E8720C" stroke-width="0.5"/>
+    <line x1="0" y1="30" x2="60" y2="30" stroke="#E8720C" stroke-width="0.5"/>
+    <circle cx="30" cy="30" r="4" stroke="#E8720C" stroke-width="1"/>
+  </svg>
+  <div style="margin-bottom:2rem;animation:fadeUp 0.8s ease both">
+    <img src="Logo/Drohnenservice_Wachlin.png" style="height:200px;width:auto;filter:drop-shadow(0 0 40px rgba(232,114,12,0.5))">
+  </div>
+  <h1 style="animation:fadeUp 0.8s ease 0.1s both">PERSPEKTIVEN<br><span>VON OBEN</span></h1>
+  <p>Professionelle Luftaufnahmen für Immobilien, Events, Inspektionen und mehr. Mit modernster DJI-Technologie in Anklam und Umgebung.</p>
+  <div class="hero-btns">
+    <a href="#kontakt" class="btn-primary">Jetzt anfragen</a>
+    <a href="#leistungen" class="btn-secondary">Leistungen ansehen</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">2</div>
+      <div class="stat-label">Drohnen</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">4K</div>
+      <div class="stat-label">Videoauflösung</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">3x</div>
+      <div class="stat-label">Optischer Zoom</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">EU</div>
+      <div class="stat-label">Zertifiziert</div>
+    </div>
+  </div>
+</section>
+
+<!-- AUSRÜSTUNG -->
+<section class="section" id="ausruestung">
+  <div class="section-label">Ausrüstung</div>
+  <div class="section-title">Modernste<br>DJI-Technologie</div>
+  <p style="color:var(--text-muted);max-width:500px;line-height:1.7">Für jeden Einsatz das richtige Gerät — von ruhigen Immobilienaufnahmen bis hin zu actionreichen FPV-Sequenzen.</p>
+
+  <div class="equipment-grid">
+    <div class="equipment-card">
+      <div class="eq-tag">Hauptdrohne</div>
+      <div class="eq-name">DJI Air 3S</div>
+      <div class="eq-desc">Die Allround-Drohne für professionelle Foto- und Videoaufnahmen. Mit 3-fach optischem Zoom für flexible Bildgestaltung aus sicherer Distanz.</div>
+      <div class="eq-specs">
+        <span class="eq-spec">4K Video</span>
+        <span class="eq-spec">3x optischer Zoom</span>
+        <span class="eq-spec">HDR</span>
+        <span class="eq-spec">Hindernisvermeidung</span>
+        <span class="eq-spec">45min Flugzeit</span>
+      </div>
+    </div>
+
+    <div class="equipment-card">
+      <div class="eq-tag">FPV Drohne</div>
+      <div class="eq-name">DJI Avata 2</div>
+      <div class="eq-desc">Für dynamische Action-Aufnahmen und cineastische FPV-Sequenzen. Ideal für Events, Sportaufnahmen und kreative Videoprojekte.</div>
+      <div class="eq-specs">
+        <span class="eq-spec">4K 60fps</span>
+        <span class="eq-spec">FPV Perspektive</span>
+        <span class="eq-spec">Ultra-weitwinkel</span>
+        <span class="eq-spec">Stabilisierung</span>
+        <span class="eq-spec">Actionaufnahmen</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEISTUNGEN -->
+<div class="leistungen-bg" id="leistungen">
+  <div class="section">
+    <div class="section-label">Leistungen</div>
+    <div class="section-title">Was ich<br>für Sie tue</div>
+
+    <div class="leistungen-grid">
+      <div class="leistung-card">
+        <div class="leistung-icon">🏠</div>
+        <div class="leistung-title">Immobilienfotografie</div>
+        <div class="leistung-desc">Luftaufnahmen von Grundstücken, Häusern und Gewerbeimmobilien. Ideal für Makler, Bauträger und Privatverkäufer.</div>
+      </div>
+
+      <div class="leistung-card">
+        <div class="leistung-icon">🎬</div>
+        <div class="leistung-title">Videoproduktion</div>
+        <div class="leistung-desc">Cineastische Luftvideos in 4K — von ruhigen Panoramafahrten bis zu dynamischen FPV-Sequenzen mit der Avata 2.</div>
+      </div>
+
+      <div class="leistung-card">
+        <div class="leistung-icon">🎉</div>
+        <div class="leistung-title">Events & Veranstaltungen</div>
+        <div class="leistung-desc">Hochzeiten, Festivals, Sportevents — atemberaubende Luftaufnahmen von Ihrem besonderen Moment.</div>
+      </div>
+
+      <div class="leistung-card">
+        <div class="leistung-icon">🔍</div>
+        <div class="leistung-title">Inspektion & Kontrolle</div>
+        <div class="leistung-desc">Dachinspektion, Solaranlagen, Fassaden und schwer zugängliche Bereiche sicher und kostengünstig aus der Luft prüfen.</div>
+      </div>
+
+      <div class="leistung-card">
+        <div class="leistung-icon">🌾</div>
+        <div class="leistung-title">Landwirtschaft</div>
+        <div class="leistung-desc">Flächenübersichten, Bestandsaufnahmen und Dokumentation landwirtschaftlicher Flächen aus der Vogelperspektive.</div>
+      </div>
+
+      <div class="leistung-card">
+        <div class="leistung-icon">📍</div>
+        <div class="leistung-title">Gebietsaufnahmen</div>
+        <div class="leistung-desc">Kartierung, Übersichtsaufnahmen und Dokumentation von Gelände, Bauprojekten oder Naturgebieten.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- VORTEILE -->
+<section class="section">
+  <div class="section-label">Warum Wachlin</div>
+  <div class="section-title">Ihr Vorteil<br>auf einen Blick</div>
+
+  <div class="vorteile-grid">
+    <div class="vorteil">
+      <div class="vorteil-dot"></div>
+      <div class="vorteil-text">
+        <h4>Lokaler Anbieter aus Anklam</h4>
+        <p>Kurze Wege, schnelle Reaktionszeiten und persönlicher Kontakt in Anklam und der gesamten Umgebung.</p>
+      </div>
+    </div>
+    <div class="vorteil">
+      <div class="vorteil-dot"></div>
+      <div class="vorteil-text">
+        <h4>Zwei spezialisierte Drohnen</h4>
+        <p>Für jede Aufgabe das richtige Gerät — ruhige Immobilienaufnahmen oder dynamische Action-Sequenzen.</p>
+      </div>
+    </div>
+    <div class="vorteil">
+      <div class="vorteil-dot"></div>
+      <div class="vorteil-text">
+        <h4>3-fach optischer Zoom</h4>
+        <p>Einzigartige Perspektiven aus sicherer Distanz ohne Qualitätsverlust — ideal für Details und Totalen.</p>
+      </div>
+    </div>
+    <div class="vorteil">
+      <div class="vorteil-dot"></div>
+      <div class="vorteil-text">
+        <h4>Schnelle Lieferung</h4>
+        <p>Bearbeitete Fotos und Videos erhalten Sie zeitnah nach dem Dreh — bereit für sofortige Verwendung.</p>
+      </div>
+    </div>
+    <div class="vorteil">
+      <div class="vorteil-dot"></div>
+      <div class="vorteil-text">
+        <h4>Flexible Einsatzgebiete</h4>
+        <p>Von Immobilien über Events bis hin zu Inspektionen — vielseitig einsetzbar für Ihre Anforderungen.</p>
+      </div>
+    </div>
+    <div class="vorteil">
+      <div class="vorteil-dot"></div>
+      <div class="vorteil-text">
+        <h4>Individuelle Beratung</h4>
+        <p>Persönliches Gespräch vor jedem Auftrag — damit das Ergebnis genau Ihren Vorstellungen entspricht.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<div style="background:var(--dark);padding:6rem 3rem" id="portfolio">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="section-label">Portfolio</div>
+    <div class="section-title" style="margin-bottom:3rem">Einblicke aus<br>der Vogelperspektive</div>
+
+    <div id="gallery" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px">
+      <div onclick="openLight('Bilder/bild1.jpg','Bilder/bild1.jpeg')" data-bild="1" style="aspect-ratio:16/9;background:url('Bilder/bild1.jpg') center/cover;border-radius:4px;cursor:pointer;overflow:hidden;position:relative;transition:transform 0.3s">
+        <div style="position:absolute;inset:0;background:rgba(232,114,12,0);transition:background 0.3s;display:flex;align-items:center;justify-content:center" onmouseover="this.style.background='rgba(232,114,12,0.15)'" onmouseout="this.style.background='rgba(232,114,12,0)'">
+          <span style="color:white;font-size:2rem;opacity:0">+</span>
+        </div>
+      </div><div onclick="openLight('Bilder/bild2.jpg','Bilder/bild2.jpeg')" data-bild="2" style="aspect-ratio:16/9;background:url('Bilder/bild2.jpg') center/cover;border-radius:4px;cursor:pointer;overflow:hidden;position:relative;transition:transform 0.3s">
+        <div style="position:absolute;inset:0;background:rgba(232,114,12,0);transition:background 0.3s;display:flex;align-items:center;justify-content:center" onmouseover="this.style.background='rgba(232,114,12,0.15)'" onmouseout="this.style.background='rgba(232,114,12,0)'">
+          <span style="color:white;font-size:2rem;opacity:0">+</span>
+        </div>
+      </div><div onclick="openLight('Bilder/bild3.jpg','Bilder/bild3.jpeg')" data-bild="3" style="aspect-ratio:16/9;background:url('Bilder/bild3.jpg') center/cover;border-radius:4px;cursor:pointer;overflow:hidden;position:relative;transition:transform 0.3s">
+        <div style="position:absolute;inset:0;background:rgba(232,114,12,0);transition:background 0.3s;display:flex;align-items:center;justify-content:center" onmouseover="this.style.background='rgba(232,114,12,0.15)'" onmouseout="this.style.background='rgba(232,114,12,0)'">
+          <span style="color:white;font-size:2rem;opacity:0">+</span>
+        </div>
+      </div><div onclick="openLight('Bilder/bild4.jpg','Bilder/bild4.jpeg')" data-bild="4" style="aspect-ratio:16/9;background:url('Bilder/bild4.jpg') center/cover;border-radius:4px;cursor:pointer;overflow:hidden;position:relative;transition:transform 0.3s">
+        <div style="position:absolute;inset:0;background:rgba(232,114,12,0);transition:background 0.3s;display:flex;align-items:center;justify-content:center" onmouseover="this.style.background='rgba(232,114,12,0.15)'" onmouseout="this.style.background='rgba(232,114,12,0)'">
+          <span style="color:white;font-size:2rem;opacity:0">+</span>
+        </div>
+      </div><div onclick="openLight('Bilder/bild5.jpg','Bilder/bild5.jpeg')" data-bild="5" style="aspect-ratio:16/9;background:url('Bilder/bild5.jpg') center/cover;border-radius:4px;cursor:pointer;overflow:hidden;position:relative;transition:transform 0.3s">
+        <div style="position:absolute;inset:0;background:rgba(232,114,12,0);transition:background 0.3s;display:flex;align-items:center;justify-content:center" onmouseover="this.style.background='rgba(232,114,12,0.15)'" onmouseout="this.style.background='rgba(232,114,12,0)'">
+          <span style="color:white;font-size:2rem;opacity:0">+</span>
+        </div>
+      </div><div onclick="openLight('Bilder/bild6.jpg','Bilder/bild6.jpeg')" data-bild="6" style="aspect-ratio:16/9;background:url('Bilder/bild6.jpg') center/cover;border-radius:4px;cursor:pointer;overflow:hidden;position:relative;transition:transform 0.3s">
+        <div style="position:absolute;inset:0;background:rgba(232,114,12,0);transition:background 0.3s;display:flex;align-items:center;justify-content:center" onmouseover="this.style.background='rgba(232,114,12,0.15)'" onmouseout="this.style.background='rgba(232,114,12,0)'">
+          <span style="color:white;font-size:2rem;opacity:0">+</span>
+        </div>
+      </div><div onclick="openLight('Bilder/bild7.jpg','Bilder/bild7.jpeg')" data-bild="7" style="aspect-ratio:16/9;background:url('Bilder/bild7.jpg') center/cover;border-radius:4px;cursor:pointer;overflow:hidden;position:relative;transition:transform 0.3s">
+        <div style="position:absolute;inset:0;background:rgba(232,114,12,0);transition:background 0.3s;display:flex;align-items:center;justify-content:center" onmouseover="this.style.background='rgba(232,114,12,0.15)'" onmouseout="this.style.background='rgba(232,114,12,0)'">
+          <span style="color:white;font-size:2rem;opacity:0">+</span>
+        </div>
+      </div><div onclick="openLight('Bilder/bild8.jpg','Bilder/bild8.jpeg')" data-bild="8" style="aspect-ratio:16/9;background:url('Bilder/bild8.jpg') center/cover;border-radius:4px;cursor:pointer;overflow:hidden;position:relative;transition:transform 0.3s">
+        <div style="position:absolute;inset:0;background:rgba(232,114,12,0);transition:background 0.3s;display:flex;align-items:center;justify-content:center" onmouseover="this.style.background='rgba(232,114,12,0.15)'" onmouseout="this.style.background='rgba(232,114,12,0)'">
+          <span style="color:white;font-size:2rem;opacity:0">+</span>
+        </div>
+      </div><div onclick="openLight('Bilder/bild9.jpg','Bilder/bild9.jpeg')" data-bild="9" style="aspect-ratio:16/9;background:url('Bilder/bild9.jpg') center/cover;border-radius:4px;cursor:pointer;overflow:hidden;position:relative;transition:transform 0.3s">
+        <div style="position:absolute;inset:0;background:rgba(232,114,12,0);transition:background 0.3s;display:flex;align-items:center;justify-content:center" onmouseover="this.style.background='rgba(232,114,12,0.15)'" onmouseout="this.style.background='rgba(232,114,12,0)'">
+          <span style="color:white;font-size:2rem;opacity:0">+</span>
+        </div>
+      </div><div onclick="openLight('Bilder/bild10.jpg','Bilder/bild10.jpeg')" data-bild="10" style="aspect-ratio:16/9;background:url('Bilder/bild10.jpg') center/cover;border-radius:4px;cursor:pointer;overflow:hidden;position:relative;transition:transform 0.3s">
+        <div style="position:absolute;inset:0;background:rgba(232,114,12,0);transition:background 0.3s;display:flex;align-items:center;justify-content:center" onmouseover="this.style.background='rgba(232,114,12,0.15)'" onmouseout="this.style.background='rgba(232,114,12,0)'">
+          <span style="color:white;font-size:2rem;opacity:0">+</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="closeLight()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:999;align-items:center;justify-content:center;cursor:pointer">
+  <img id="lightbox-img" src="" style="max-width:90vw;max-height:90vh;object-fit:contain;border-radius:4px">
+  <div onclick="closeLight()" style="position:absolute;top:20px;right:30px;color:white;font-size:2rem;cursor:pointer">✕</div>
+</div>
+
+<!-- KONTAKT -->
+<div class="kontakt-bg" id="kontakt">
+  <div class="section">
+    <div class="section-label">Kontakt</div>
+    <div class="section-title">Projekt anfragen</div>
+
+    <div class="kontakt-grid">
+      <div class="kontakt-info">
+        <h3>Lassen Sie uns<br>zusammenarbeiten.</h3>
+        <p>Egal ob Immobilie, Event oder Inspektion — melden Sie sich einfach und wir besprechen Ihr Projekt. Kostenlose Erstberatung inklusive.</p>
+
+        <div class="kontakt-detail">
+          <div class="kontakt-detail-icon">📧</div>
+          <div class="kontakt-detail-text">
+            <p>E-Mail</p>
+            <a href="mailto:johann-wachlin@gmx.de">johann-wachlin@gmx.de</a>
+          </div>
+        </div>
+
+        <div class="kontakt-detail">
+          <div class="kontakt-detail-icon">📱</div>
+          <div class="kontakt-detail-text">
+            <p>Telefon / WhatsApp</p>
+            <a href="tel:+4917662223463">0176 62223463</a>
+          </div>
+        </div>
+
+        <div class="kontakt-detail">
+          <div class="kontakt-detail-icon">📍</div>
+          <div class="kontakt-detail-text">
+            <p>Einsatzgebiet</p>
+            <span style="color:var(--text);font-weight:500">Anklam & Umgebung</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="kontakt-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Vorname</label>
+            <input type="text" id="vorname" placeholder="Max">
+          </div>
+          <div class="form-group">
+            <label>Nachname</label>
+            <input type="text" id="nachname" placeholder="Mustermann">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>E-Mail</label>
+          <input type="email" id="email" placeholder="ihre@email.de">
+        </div>
+
+        <div class="form-group">
+          <label>Telefon (optional)</label>
+          <input type="tel" id="telefon" placeholder="0176 ...">
+        </div>
+
+        <div class="form-group">
+          <label>Leistung</label>
+          <select id="leistung">
+            <option value="">Bitte wählen...</option>
+            <option>Immobilienfotografie</option>
+            <option>Videoproduktion</option>
+            <option>Event / Veranstaltung</option>
+            <option>Inspektion / Kontrolle</option>
+            <option>Landwirtschaft</option>
+            <option>Sonstiges</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Ihre Nachricht</label>
+          <textarea id="nachricht" placeholder="Beschreiben Sie kurz Ihr Projekt..."></textarea>
+        </div>
+
+        <button class="btn-submit" onclick="submitForm()">Anfrage absenden</button>
+        <div class="form-success" id="form-success">
+          ✓ Vielen Dank! Ihre Anfrage wurde gesendet. Ich melde mich so schnell wie möglich.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">DROHNENSERVICE <span>WACHLIN</span></div>
+  <p>© 2026 Drohnenservice Wachlin · Anklam · Alle Rechte vorbehalten</p>
+  <p style="color:var(--text-muted);font-size:0.75rem">17389 Anklam & Umgebung</p>
+</footer>
+
+<script>
+function openLight(src, fallback) {
+  const img = document.getElementById('lightbox-img');
+  img.onerror = function() { if(fallback) { img.src = fallback; img.onerror=null; } };
+  img.src = src;
+  document.getElementById('lightbox').style.display = 'flex';
+}
+
+function imgSrc(n) {
+  return 'Bilder/bild' + n + '.jpg';
+}
+
+function closeLight() {
+  document.getElementById('lightbox').style.display = 'none';
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeLight();
+});
+
+function submitForm() {
+  const vorname = document.getElementById('vorname').value.trim();
+  const nachname = document.getElementById('nachname').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const leistung = document.getElementById('leistung').value;
+  const nachricht = document.getElementById('nachricht').value.trim();
+
+  if (!vorname || !email || !leistung || !nachricht) {
+    alert('Bitte füllen Sie alle Pflichtfelder aus.');
+    return;
+  }
+
+  const subject = encodeURIComponent('Drohnen-Anfrage: ' + leistung);
+  const body = encodeURIComponent(
+    'Name: ' + vorname + ' ' + nachname + '\n' +
+    'E-Mail: ' + email + '\n' +
+    'Telefon: ' + document.getElementById('telefon').value + '\n' +
+    'Leistung: ' + leistung + '\n\n' +
+    'Nachricht:\n' + nachricht
+  );
+
+  window.location.href = 'mailto:johann-wachlin@gmx.de?subject=' + subject + '&body=' + body;
+
+  document.getElementById('form-success').style.display = 'block';
+}
+
+// Bilder mit JPG/JPEG Fallback laden
+function setBg(el, n) {
+  const jpg = 'Bilder/bild' + n + '.jpg';
+  const jpeg = 'Bilder/bild' + n + '.jpeg';
+  const test = new Image();
+  test.onload = () => el.style.backgroundImage = 'url(' + jpg + ')';
+  test.onerror = () => el.style.backgroundImage = 'url(' + jpeg + ')';
+  test.src = jpg;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Hero Hintergrund
+  const heroBg = document.querySelector('.hero-img');
+  if (heroBg) setBg(heroBg, 1);
+  
+  // Portfolio Bilder
+  document.querySelectorAll('[data-bild]').forEach(el => {
+    setBg(el, el.dataset.bild);
+  });
+});
+
+// Smooth scroll für Nav-Links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+</body>
+</html>
