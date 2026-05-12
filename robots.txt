@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://drohnenservice-anklam.de/sitemap.xml
